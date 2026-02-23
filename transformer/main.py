@@ -141,10 +141,7 @@ def main():
         src = S.encode(prompt,stoi)[:prefix_len]
         src_ids = src.unsqueeze(0).to(device)
         ben_gen_cfg["prefix_ids"] = src_ids
-        for i in range(11):
-            print("beam",i+1)
-            ben_gen_cfg["beam_size"]=i+1
-            benchmark_cache_vs_nocache(model, src_ids, bos_id, eos_id, ben_gen_cfg, warmup=2, runs=20)
+        benchmark_cache_vs_nocache(model, src_ids, bos_id, eos_id, ben_gen_cfg, warmup=2, runs=20)
     elif mode == "inference":
         ckpt = T.load_checkpoint(ckpt_path,device=device)
         model.load_state_dict(ckpt["model_state_dict"])

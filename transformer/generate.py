@@ -1,5 +1,4 @@
 import torch
-import copy
 def greedy_filter(logits):
     next_id = torch.argmax(logits, dim=-1, keepdim=True)
     return next_id
@@ -145,7 +144,7 @@ def beam_search_generate(model,src_ids,bos_id,eos_id,prefix_ids=None,
                 new_seq = torch.cat([seq,tok],dim=1)
                 new_score = score+topv[0,j].item()
                 new_finished = (tok.item()==eos_id)
-                candidate_past = candidate_past = [(k, v) for (k, v) in new_past_key_values] if new_past_key_values is not None else None
+                candidate_past =  [(k, v) for (k, v) in new_past_key_values] if new_past_key_values is not None else None
                 candidates.append((new_seq,new_score,new_finished,candidate_past))
         if all_finished:
             break
