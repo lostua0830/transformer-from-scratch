@@ -1,0 +1,57 @@
+model_cfg:
+  N: 2
+  src_vocab: null
+  tgt_vocab: null
+  d_model: 512
+  d_ff: 256
+  num_head: 4
+  pad_id: null
+  max_len: 5000
+
+optimizer_cfg:
+  opt_name: adamw
+  lr: 0.0003
+  weight_decay: 0.0
+  momentum: 0.9
+
+train_cfg:
+  epochs: 5
+  global_step: 0
+
+sample_cfg:
+  log_steps: 50
+  gen_steps: 500
+  bos_id: null
+  eos_id: null
+  pad_id: null
+  temperature: 1.2
+  decode_mode: greedy
+  topk: 0
+  topp: 0.9
+  itos: null
+
+ben_gen_cfg:
+  max_length_tokens: 128
+  temperature: 1.0
+  decode_mode: beam
+  topk: 0
+  topp: 1.0
+  beam_size: 4
+  length_penalty: 1.0
+
+gen_cfg:
+  max_length_tokens: 256
+  temperature: 1.0
+  decode_mode: beam
+  topk: 1
+  topp: 1.0
+  beam_size: 10
+  length_penalty: 1.0
+  use_cache: true
+
+run_cfg:
+  mode: benchmark
+  resume: false
+  latest_ckpt_path: checkpoints/latest.pt
+  best_ckpt_path: checkpoints/best.pt
+
